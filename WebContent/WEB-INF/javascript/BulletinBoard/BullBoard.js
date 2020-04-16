@@ -59,7 +59,6 @@ $(document).ready(
 										}
 
 										$("#result").html(str);
-
 									},
 									error : function(rs) {
 										console.log("error")
@@ -67,10 +66,7 @@ $(document).ready(
 
 								})
 					}
-						
-								
-								
-								
+					
 						checkData();
 						function checkData() {
 						$("#checkData").html("");
@@ -95,17 +91,41 @@ $(document).ready(
 												+rs2[i].Title
 												+'</button></h2></div>'
 												+' <div id="collapse'+i+'" class="collapse" aria-labelledby="heading'+i+'" data-parent="#checkData">'													
-												+'<div class="card-body">'
-												+rs2[i].Context
-												+'<p>權限:' + rs2[i].Authority + '</p>'
-												+'<p>上線日期:' + rs2[i].upTime + '</p>'
-												+'<p>下架日期:' + rs2[i].downTime + '</p>'
-												+'<p>創造日期:' + rs2[i].Date + '</p>'
+												+'<div class="card-body" id="'+rs2[i].BulletinBoardID+'+">'
+												+'<p class="cardContext">' + rs2[i].Context + '</p>'
+												+'<span>權限:</span><p class="cardAuthority">' + rs2[i].Authority + '</p>'
+												+'<span>上線日期:</span><p class="cardupTime">' + rs2[i].upTime + '</p>'
+												+'<span>下架日期:</span><p class="carddownTime">' + rs2[i].downTime + '</p>'
+												+'<span>創造日期:</span><p class="cardDate">' + rs2[i].Date + '</p>'
+												+'<a class="btn btn-primary change " id="ch'  + i + '" data-toggle="tab" href="#update" role="tab" aria-controls="update">更改</a>'
+												+'<input type="button" class="btn btn-primary del mx-1" id="de' + i + '" value="刪除">'
 												+'</div></div></div>'
+										
 										}
+										$("#checkData").html(str);	
 
-										$("#checkData").html(str);
-
+										$(document).on("click",".card-body a.change",function() {
+											var ind = $(".card-body a.change").index(this)
+											var idd = $(this).attr("id")
+											$("#contact-tab").addClass("active");
+											$("#profile-tab").removeClass("active");
+											console.log("ind.change:"+ind);
+											console.log("idd.change:"+idd);
+										
+											$("#title").val($(".card-header .btn-link").eq(ind).html());
+											$("#content").val($(".card-body .cardContext").eq(ind).html().replace(/<br>/g, "\n"));
+											$("#uptime").val($(".card-body .cardupTime").eq(ind).html());
+											$("#downtime").val($(".card-body .carddownTime").eq(ind).html());
+									
+										})
+										
+										$(document).on("click",".card-body input.del",function() {
+											var ind = $(".card-body input.del").index(this)
+											var idd = $(this).attr("id")
+											console.log("ind.del:"+ind);
+											console.log("idd.del:"+idd);
+										})
+					
 									},
 									error : function(rs) {
 										console.log("error")

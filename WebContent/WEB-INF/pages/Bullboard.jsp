@@ -25,6 +25,9 @@
 .date {
 	width: 24%
 }
+#BulletinBoardid,.depAuthority{
+	display:none;
+}
 </style>
 
 </head>
@@ -46,7 +49,7 @@
 				<li class="nav-item"><a class="nav-link" id="contact-tab"
 					data-toggle="tab" href="#update" role="tab" aria-controls="update"
 					aria-selected="false">新增通知</a></li>
-				<li class="nav-item"><a class="nav-link" id="contact-tab"
+				<li class="nav-item"><a class="nav-link" id="record-tab"
 					data-toggle="tab" href="#record" role="tab" aria-controls="#record"
 					aria-selected="false">歷年紀錄</a></li>
 			</ul>
@@ -55,13 +58,11 @@
 					aria-labelledby="profile-tab">
 					<h3>顯示</h3>
 					<div class="accordion" id="checkData"></div>
-
-
 				</div>
 
-				<div class="tab-pane fade ${update}" id="update" role="tabpanel"
+				<div class="tab-pane fade" id="update" role="tabpanel"
 					aria-labelledby="contact-tab">
-					<h3>新增通知</h3>
+					<h3 id="updateName">新增通知</h3>
 
 					<form id="insertNotice" name="insertNotice"
 						action='<c:url value="/insert"></c:url>' method="post"
@@ -69,7 +70,7 @@
 						<p>
 							<input type="text" name="title" placeholder="標題" id="title" />
 						</p>
-
+						<input type="text" name="BulletinBoardid" id="BulletinBoardid">
 						<textarea name="content" placeholder="內文" id="content"></textarea>
 
 						<p>
@@ -109,7 +110,7 @@
 						</p>
 
 						<section class="text-center">
-							<button type="submit" class="my-2 btn btn-secondary">submit送出</button>
+							<button type="submit" class="my-2 btn btn-secondary">送出</button>
 							<button type="button" id="tttttt" class="my-2 btn btn-secondary">測試</button>
 						</section>
 					</form>
@@ -122,7 +123,11 @@
 				</div>
 			</div>
 		</div>
+	
 	</section>
+
+
+
 
 	<script type="text/javascript"
 		src='<c:url value = "/lib/jquery/jquery-3.4.1.js"/>'></script>
@@ -132,5 +137,6 @@
 		src='<c:url value="/javascript/BulletinBoard/BullBoard.js"></c:url>'></script>
 
 
+	
 </body>
 </html>

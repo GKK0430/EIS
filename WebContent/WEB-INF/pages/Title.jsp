@@ -18,13 +18,13 @@ body {
 
 	<li class="nav-item border mx-3">
 	
-	<a class="nav-link ${bullboard}  font-weight-bold" href='<c:url value="/BullBoard"/>' tabindex="-1">佈告欄</a>
+	<a class="nav-link ${bullboard}  font-weight-bold" href='<c:url value="/login/BullBoard"/>' tabindex="-1">佈告欄</a>
 		
 	</li>
 	
 	<li class="nav-item border mx-3">
 	
-	<a class="nav-link ${title} font-weight-bold" href='<c:url value="/index"/>'
+	<a class="nav-link ${title} font-weight-bold" href='<c:url value="/login/index"/>'
 		tabindex="-1">回首頁</a>
 		
 	</li>
@@ -38,7 +38,7 @@ body {
 	</li>
 	
 	<li class="nav-item border mx-3">
-	<a class="nav-link ${userLogin} text-success font-weight-bold" href='<c:url value="/LoginSucess"/>'
+	<a class="nav-link ${userLogin} text-success font-weight-bold" href='<c:url value="/login/LoginSucess"/>'
 		tabindex="-1">${usersResultMap.UserName}</a>
 	</li>
 	

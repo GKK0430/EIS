@@ -47,4 +47,11 @@ public class BulletinBoardService implements IBulletinBoardService {
 		return BulletinBoardDAO.queryBulletinByOwnCreate(EmployeeID);
 	}
 
+
+
+	@Override
+	public boolean deleteBulletin(int id) {
+		return BulletinBoardDAO.deleteBulletin(id);
+	}
+
 }

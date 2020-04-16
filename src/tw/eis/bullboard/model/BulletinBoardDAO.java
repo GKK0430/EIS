@@ -31,7 +31,9 @@ public class BulletinBoardDAO implements IBulletinBoardDAO {
 
 	@Override
 	public boolean updateBulletin(BulletinBoard BulletinBoard) {
-		return false;
+		Session Session = SessionFactory.getCurrentSession();
+		Session.update(BulletinBoard);
+		return true;
 	}
 
 	@Override
@@ -62,6 +64,16 @@ public class BulletinBoardDAO implements IBulletinBoardDAO {
 		query.setInteger("EmployeeID", EmployeeID);
 		List<BulletinBoard> BulletinBoards = query.list();
 		return BulletinBoards;
+	}
+
+
+
+	@Override
+	public boolean deleteBulletin(int id) {
+		Session Session = SessionFactory.getCurrentSession();
+		BulletinBoard BulletinBoard = Session.get(BulletinBoard.class, id);
+		Session.delete(BulletinBoard);
+		return true;
 	}
 
 }

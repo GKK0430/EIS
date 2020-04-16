@@ -28,7 +28,7 @@
 
 
 
-		<img src="images/pabow.jpg" />
+		<img src='<c:url value="../images/pabow.jpg"></c:url>' />
 
 
 	</section>

@@ -30,7 +30,6 @@ import tw.eis.model.Users;
 
 @Controller
 @SessionAttributes(value = { "LoginOK", "Msg" })
-
 public class BullBoardController {
 
 	private BulletinBoardService BulletinBoardService;
@@ -42,7 +41,7 @@ public class BullBoardController {
 	
 //	新增
 	@RequestMapping(path = "/insert", method = RequestMethod.POST)
-	public String insertNotice(@RequestParam(value = "title") String title,
+	public String insertNotice(@RequestParam(value="BulletinBoardid",required = false)String id,@RequestParam(value = "title") String title,
 			@RequestParam(value = "content") String content, @RequestParam(value = "uptime") Date uptime,
 			@RequestParam(value = "downtime") Date downtime,
 			@RequestParam(value = "file") MultipartFile multipartfile,@RequestParam(name = "dep",required = false) String dep, @ModelAttribute(name = "LoginOK") Users LoginOK,
@@ -71,10 +70,15 @@ public class BullBoardController {
 			BulletinBoard.setAttachedFilesName(FileName);
 			BulletinBoard.setAttachedFiles(b);
 
+		}
+		
+		if (id==null || id.length()==0) {
 			BulletinBoardService.insertBulletin(BulletinBoard);
-			Msg.put("Msg", "新增成功");
-		}else {
-			BulletinBoardService.insertBulletin(BulletinBoard);
+		}
+		else {
+			BulletinBoard.setBulletinBoardID(Integer.valueOf(id));
+			BulletinBoardService.updateBulletin(BulletinBoard);
+			
 		}
 		
 		return "Bullboard";
@@ -156,4 +160,34 @@ public class BullBoardController {
 		List<BulletinBoard> BulletinBoards = BulletinBoardService.queryBulletinForLook(loginOK.getDepartment());
 		return Integer.toString(BulletinBoards.size());
 	}
+
+	@RequestMapping(path="/delete",method = RequestMethod.POST,produces = "html/text;charset=utf-8")
+	public @ResponseBody String delete(@RequestParam(value="BulletinBoardid")int id) {
+		
+		BulletinBoardService.deleteBulletin(id);
+		return "true";
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
