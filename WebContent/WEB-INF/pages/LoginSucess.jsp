@@ -7,6 +7,12 @@
 <title>Login Success</title>
 </head>
 <body>
+
+<!-- 簡單title by GK Start -->
+<%@ include file="Title.jsp"%>
+<!-- End-->
+
+
 <h1>登入成功</h1>
 <h3>你的個人資訊</h3>
 <label>員工編號: </label>${usersResultMap.EmployeeID}<br>
