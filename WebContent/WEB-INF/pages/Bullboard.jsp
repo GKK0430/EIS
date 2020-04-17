@@ -85,19 +85,19 @@
 								id="Authority" name="Authority" value="down">向下發布
 						<div class="depAuthority">
 
-							<c:if test="${loginOK.department!='HR'}">
+							<c:if test="${usersResultMap.Department!='HR'}">
 								<input type="checkbox" value="HR" name="dep"> HR
 							</c:if>
-							<c:if test="${loginOK.department!='RD'}">
+							<c:if test="${usersResultMap.Department!='RD'}">
 								<input type="checkbox" value="RD" name="dep">RD 
 							</c:if>
-							<c:if test="${loginOK.department!='Test'}">
+							<c:if test="${usersResultMap.Department!='Test'}">
 								<input type="checkbox" value="Test" name="dep"> Test
 									</c:if>
-							<c:if test="${loginOK.department!='Sales'}">
+							<c:if test="${usersResultMap.Department!='Sales'}">
 								<input type="checkbox" value="Sales" name="dep"> Sales
 							</c:if>
-							<c:if test="${loginOK.department!='PM'}">
+							<c:if test="${usersResultMap.Department!='PM'}">
 								<input type="checkbox" value="PM" name="dep"> PM
 								</c:if>
 						</div>
