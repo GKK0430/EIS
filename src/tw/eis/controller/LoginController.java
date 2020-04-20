@@ -70,6 +70,10 @@ public class LoginController {
 		
 		String encryptPwd=aes.parseByte2HexStr(aes.encrypt(userPassword));
 		
+//		因為有加密所以請先輸入一次欲加入的密碼後從此處取得加密後密碼再填入資料庫方得登入
+		System.out.println("encryptPwd:"+encryptPwd);
+		
+		
 		List<Users> loginResult=uService.findUsers(userName, encryptPwd);
 		
 		if(loginResult.size()>0) {
@@ -83,8 +87,10 @@ public class LoginController {
 			usersResultMap.put("Title", uBean.getTitle());
 			usersResultMap.put("Department", uBean.getDepartment());
 			model.addAttribute("usersResultMap", usersResultMap);
-			return "LoginSucess";
-			
+//			return "LoginSucess";
+//			導向主頁 by gk
+			return "index";
+//			導向主頁 end		
 		}
 		else {
 			errorMsgMap.put("LoginError", "Account doesn't exit or password wrong");
@@ -110,7 +116,7 @@ public class LoginController {
 		List<Employee> employeeByEmail=eService.findEmployeeByEmail(email);
 		
 		if(employeeByEmail.size() <= 0) {						
-			errorMsgFromForgetPwd.put("emailNotFound", "E-mail�S�Q���U�L");
+			errorMsgFromForgetPwd.put("emailNotFound", "E-mail沒被註冊過");
 			return "CheckEmail";
 		}
 		
@@ -121,7 +127,7 @@ public class LoginController {
 		Users uBean=uListIT.next();
 		EmailUtil eUtil=new EmailUtil();
 		eUtil.sendResetPasswordEmail(uBean, email);
-		errorMsgFromForgetPwd.put("emailSucess", "���榨�\�A�Ьd�ݧA��E-mail�H�c");
+		errorMsgFromForgetPwd.put("emailSucess", "提交成功，請查看你的E-mail信箱");
 		return "CheckEmail";
 	}
 	
@@ -138,10 +144,10 @@ public class LoginController {
 		Map<String, String> MsgFromPwdReset = new HashMap<String, String>();
 		model.addAttribute("MsgFromPwdReset", MsgFromPwdReset);
 		if(status) {
-			MsgFromPwdReset.put("resetSuccess", "�K�X���]���\�A�Э��s�n�J");
+			MsgFromPwdReset.put("resetSuccess", "密碼重設成功，請重新登入");
 			return "UserLogin";
 		}
-		MsgFromPwdReset.put("resetFailed", "�K�X���]���ѡA�ЦA�դ@��");
+		MsgFromPwdReset.put("resetFailed", "密碼重設失敗，請再試一次");
 		return "resetPassword";
 	}
 	
